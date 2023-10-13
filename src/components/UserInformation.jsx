@@ -79,6 +79,5 @@ export default function UserInformation() {
   )
 }
 
-{/* <h2>Education</h2> */}
 {/* <h2>Professional Experience</h2> */}
 {/* <h2>Skills And Certificates</h2> */}

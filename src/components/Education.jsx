@@ -1,106 +1,168 @@
 import React from "react"
 import { v4 as uuidv4 } from "uuid"
+import EducationTemplate from "./EducationTemplate";
 
 export default function Education() {
+  
+  const [educationData, setEducationData] = React.useState([]);
+  const [addEducation, setAddEducation] = React.useState(true);
+  const [newEducationData, setNewEducationData] = React.useState(false);
+  const [educationAdded, setEducationAdded] = React.useState(true);
+  const [showEducationBtn, setShowEducationBtn] = React.useState(true);
+  const [selectedEducation, setSelectedEducation] = React.useState(null);
 
-  const [personalData, setPersonalData] = React.useState(JSON.parse(localStorage.getItem("userInfo")));
-
-  let objId = uuidv4();
-
-  const handleChange = (event) => {
+  function handleChange (event) {
     const { name, value } = event.target;
-    const updatedPersonalData = {
-      ...personalData,
-      education: {
-        ...personalData.education.educationId[objId],
-        [name]: value,
-      },
-    };
-    setPersonalData(updatedPersonalData);
-    localStorage.setItem("userInfo", JSON.stringify(updatedPersonalData));
-  };
+  
+    if (educationData.length > 0) {
+      const updatedEducationData = [...educationData];
+      const lastIndex = educationData.length - 1;
 
-  const [addEducation, setAddEducation] = React.useState(false);
-  const [educationData, setEducationData] = React.useState(false);
-
-  function handleAddEducation() {
-    setAddEducation(!addEducation)
+      updatedEducationData[lastIndex] = {
+        ...updatedEducationData[lastIndex],
+        [name]: value
+      };
+      setEducationData(updatedEducationData);
+    }
   }
-
-  function handleEducationData() {
-    setEducationData(!educationData)
-  }
-
 
   function educationObj() {
-    personalData.education.push({
-      educationId: objId,
+    educationData.push({
+      educationId: uuidv4(),
       school: "",
       degree: "",
       startDate: "",
       endDate: "",
-      location: ""
+      location: "",
+      saved: false,
     })
   }
 
-  function handleBoth() {
-    handleAddEducation();
-    handleEducationData();
+  function handleAddEducationBtn() {
+    setAddEducation(!addEducation)
+    setNewEducationData(!newEducationData)
+    setEducationAdded(false);
     educationObj();
+    setShowEducationBtn(false)
   }
-  console.log(personalData)
+
+  function showEducationEdit(educationId) {
+    setSelectedEducation(educationId);
+    setShowEducationBtn(false)
+    setAddEducation(false)
+  }
+
+  function handleEdit(event) {
+    const { name, value } = event.target;
+    const educationId = selectedEducation;
+  
+    const updatedEducationData = educationData.map(education => {
+      if (education.educationId === educationId) {
+        return {
+          ...education,
+          [name]: value
+        };
+      }
+      return education;
+    });
+  
+    setEducationData(updatedEducationData);
+  }  
+  
+  function handleEditSave() {
+    setSelectedEducation(null);
+    setShowEducationBtn(true);
+    setAddEducation(true);
+  }
+
+  function handleDeleteEdit() {
+    const educationId = selectedEducation;
+    let updatedEducationData = [];
+
+    educationData.map(education => {
+      if(education.educationId !== educationId) {
+        updatedEducationData.push(education)
+      }
+    });
+
+    setEducationData(updatedEducationData);
+    setSelectedEducation(null);
+    setShowEducationBtn(true);
+    setAddEducation(true);
+  }
+
+  function handleCancel() {
+    setEducationData(prevEducationData => {
+      const updatedEducationData = prevEducationData.filter(prevEdu => prevEdu.saved === true);
+      return updatedEducationData;
+    });
+    setAddEducation(true);
+    setEducationAdded(true);
+    setNewEducationData(false);
+  }
+  
+  function handleSave() {
+    setEducationData(prevEducationData => {
+      const lastIndex = prevEducationData.length - 1;
+      const updatedEducationData = [...prevEducationData];
+      updatedEducationData[lastIndex] = {
+        ...updatedEducationData[lastIndex],
+        saved: true
+      };
+      return updatedEducationData;
+    });
+    setNewEducationData(!newEducationData);
+    setAddEducation(!addEducation)
+    setEducationAdded(!educationAdded);
+    setShowEducationBtn(true)
+  }
+
+  console.log(educationData)
 
   return (
-    <div className="education-container">
-      <button onClick={handleAddEducation}>Education</button>
-      {addEducation && <button onClick={handleBoth}>+ Education</button>}
-      {educationData && <div className="education">
-        <label htmlFor="school">School</label>
-        <input 
-          type="text" 
-          id="school"
-          value={personalData.education.educationId[objId].school}
-          name="school"
-          onChange={handleChange}
-        />
-        <label htmlFor="degree">Degree</label>
-        <input
-          type="text" 
-          id="degree"
-          value={personalData.education.educationId[objId].degree}
-          name="degree"
-          onChange={handleChange}
-        />
-        <label htmlFor="start-date">Start Date</label>
-        <input 
-          type="text" 
-          id="start-date"
-          value={personalData.education.educationId[objId].startDate}
-          name="startDate"
-          onChange={handleChange}
-        />
-        <label htmlFor="end-date">End Date</label>
-        <input 
-          type="text" 
-          id="end-date"
-          value={personalData.education.educationId[objId].endDate}
-          name="endDate"
-          onChange={handleChange}
-        />
-        <label htmlFor="location">Location</label>
-        <input
-          type="text" 
-          id="location"
-          value={personalData.education.educationId[objId].location}
-          name="location"
-          onChange={handleChange}
-        />
-        <div>
-          <button>Delete</button>
-          <button>Cancel</button>
-          <button>Save</button>
-        </div>
-      </div>}
+    <div>
+      <div className="education-input-container">
+        <button>Education</button>
+        {educationData.map(education => (
+          <div key={education.educationId}>
+            {showEducationBtn && <button onClick={() => showEducationEdit(education.educationId)} key={education.educationId}>{education.school}</button>}
+            {selectedEducation === education.educationId &&
+              <EducationTemplate 
+                educationData={education}
+                handleDelete={handleDeleteEdit}
+                handleCancel={handleEditSave}
+                handleSave={handleEditSave}
+                handleChange={handleEdit}
+            />}
+          </div>
+        ))}
+        {addEducation && <button onClick={handleAddEducationBtn}>+ Education</button>}
+        {newEducationData && 
+          <EducationTemplate 
+            educationData={educationData}
+            handleDelete={handleCancel}
+            handleCancel={handleCancel}
+            handleSave={handleSave}
+            handleChange={handleChange}
+            index={educationData.length - 1}
+          /> 
+        }
+      </div>
+      <div className="education-data-container">
+        <h2>Education</h2>
+        {educationData.map(education => (
+          <div key={education.educationId}>
+            <div className="education-period">
+              <p>{education.startDate} - {education.endDate}</p>
+              <p>{education.location}</p>
+            </div>
+            <div className="education-info">
+              <h3>{education.school}</h3>
+              <p>{education.degree}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
