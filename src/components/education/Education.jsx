@@ -34,7 +34,7 @@ export default function Education() {
       startDate: "",
       endDate: "",
       location: "",
-      saved: false,
+      saved: false
     })
   }
 

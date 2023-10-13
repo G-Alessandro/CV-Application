@@ -28,7 +28,8 @@
 
 }
 
-.education-input-container {
+.education-input-container,
+.experience-input-container {
   display: flex;
   flex-direction: column;
 }
