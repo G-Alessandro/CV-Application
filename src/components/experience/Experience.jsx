@@ -100,6 +100,7 @@ export default function Experience() {
     setAddExperience(true);
     setExperienceAdded(true);
     setNewExperienceData(false);
+    setShowExperienceBtn(true);
   }
   
   function handleSave() {
@@ -150,7 +151,7 @@ export default function Experience() {
         }
       </div>
       <div className="experience-data-container">
-        <h2>Experience</h2>
+        <h2>Professional Experience</h2>
         {experienceData.map(experience => (
           <div key={experience.experienceId}>
             <div className="experience-period">

@@ -11,7 +11,8 @@
 
 .personal-details,
 .education,
-.experience {
+.experience,
+.skill-certificate {
   display: flex;
   flex-direction: column;
 }

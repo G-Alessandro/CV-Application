@@ -99,6 +99,7 @@ export default function Education() {
     setAddEducation(true);
     setEducationAdded(true);
     setNewEducationData(false);
+    setShowEducationBtn(true);
   }
   
   function handleSave() {
