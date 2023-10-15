@@ -6,8 +6,62 @@
 
 .main-container {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2fr;
 }
+
+.personal-details-container,
+.education-input-container,
+.experience-input-container,
+.skillsAndCertificates-input-container {
+  display: flex;
+  flex-direction: column;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  margin: 20px 20px 30px 15px;
+}
+
+/* .preview-personal-details,
+.preview-education,
+.preview-experience,
+.preview-skills-and-certificates {
+  grid-column-start: 2;
+  grid-column-end: 3;
+} */
+
+.add-btn {
+  width: fit-content;
+  padding: 10px;
+}
+
+/* .personal-details-container {
+
+} */
+
+
+/* preview-personal-details
+
+.education-input-container {
+
+}
+
+preview-education
+
+education-period
+
+education-info
+
+experience-input-container
+
+preview-experience
+
+experience-period
+
+experience-info
+
+skillsAndCertificates-input-container
+
+preview-skillsAndCertificates */
+
 
 .personal-details,
 .education,
@@ -17,20 +71,9 @@
   flex-direction: column;
 }
 
-.personal-details {
-
-}
-
-.education {
-
-}
-
-.experience {
-
-}
-
-.education-input-container,
-.experience-input-container {
-  display: flex;
-  flex-direction: column;
+input {
+  width: 400px;
+  height: 30px;
+  margin: 4px 0px 12px 0px;
+  border-radius: 10px;
 }

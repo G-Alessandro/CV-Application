@@ -1,10 +1,11 @@
 import React from "react"
 import { v4 as uuidv4 } from "uuid"
 import ExperienceTemplate from "./ExperienceTemplate";
+import { ExperienceDataContext } from "../../App";
 
 export default function Experience() {
   
-  const [experienceData, setExperienceData] = React.useState([]);
+  const {experienceData, setExperienceData} = React.useContext(ExperienceDataContext);
   const [addExperience, setAddExperience] = React.useState(true);
   const [newExperienceData, setNewExperienceData] = React.useState(false);
   const [experienceAdded, setExperienceAdded] = React.useState(true);
@@ -133,9 +134,9 @@ export default function Experience() {
   console.log(experienceData)
 
   return (
-    <div>
+    <>
       <div className="experience-input-container">
-        <button>Experience</button>
+        <h2>Experience</h2>
         {experienceData.map(experience => (
           <div key={experience.experienceId}>
             {showExperienceBtn && <button onClick={() => showExperienceEdit(experience.experienceId)} key={experience.experienceId}>{experience.companyName}</button>}
@@ -149,7 +150,7 @@ export default function Experience() {
             />}
           </div>
         ))}
-        {addExperience && <button onClick={handleAddExperienceBtn}>+ Experience</button>}
+        {addExperience && <button onClick={handleAddExperienceBtn} className="add-btn">+ Experience</button>}
         {newExperienceData && 
           <ExperienceTemplate 
             experienceData={experienceData}
@@ -161,22 +162,6 @@ export default function Experience() {
           /> 
         }
       </div>
-      <div className="experience-data-container">
-        <h2>Professional Experience</h2>
-        {experienceData.map(experience => (
-          <div key={experience.experienceId}>
-            <div className="experience-period">
-              <p>{experience.startDate} - {experience.endDate}</p>
-              <p>{experience.location}</p>
-            </div>
-            <div className="experience-info">
-              <h3>{experience.companyName}</h3>
-              <p>{experience.positionTitle}</p>
-              <p>{experience.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   )
 }

@@ -1,14 +1,9 @@
 import React from "react"
+import { PersonalDataContext } from "../../App";
 
-export default function UserInformation() {
-
-  const [personalData, setPersonalData] = React.useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    address: ""
-  });
+export default function GeneralInformation() {
+  
+  const { personalData, setPersonalData } = React.useContext(PersonalDataContext);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -17,10 +12,10 @@ export default function UserInformation() {
       }
     setPersonalData(updatedPersonalData);
   };
-  console.log()
+
   return (
     <>
-      <div className="personal-details">
+      <div className="personal-details-container">
         <h3>Personal Details</h3>
         <label htmlFor="first-name">First Name</label>
         <input 
@@ -62,16 +57,6 @@ export default function UserInformation() {
           name="address"
           onChange={handleChange}
         />
-      </div>
-      <div className="preview-personal-details">
-        <h1>{personalData.firstName} {personalData.lastName}</h1>
-        <ul>
-          <li>{personalData.firstName}</li>
-          <li>{personalData.lastName}</li>
-          <li>{personalData.email}</li>
-          <li>{personalData.phoneNumber}</li>
-          <li>{personalData.address}</li>
-        </ul>
       </div>
     </>
   )

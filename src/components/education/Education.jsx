@@ -1,10 +1,11 @@
 import React from "react"
 import { v4 as uuidv4 } from "uuid"
 import EducationTemplate from "./EducationTemplate";
+import { EducationDataContext } from "../../App";
 
 export default function Education() {
   
-  const [educationData, setEducationData] = React.useState([]);
+  const {educationData, setEducationData} = React.useContext(EducationDataContext);
   const [addEducation, setAddEducation] = React.useState(true);
   const [newEducationData, setNewEducationData] = React.useState(false);
   const [educationAdded, setEducationAdded] = React.useState(true);
@@ -132,9 +133,9 @@ export default function Education() {
   console.log(educationData)
 
   return (
-    <div>
+    <>
       <div className="education-input-container">
-        <button>Education</button>
+        <h2>Education</h2>
         {educationData.map(education => (
           <div key={education.educationId}>
             {showEducationBtn && <button onClick={() => showEducationEdit(education.educationId)} key={education.educationId}>{education.school}</button>}
@@ -148,7 +149,7 @@ export default function Education() {
             />}
           </div>
         ))}
-        {addEducation && <button onClick={handleAddEducationBtn}>+ Education</button>}
+        {addEducation && <button onClick={handleAddEducationBtn} className="add-btn">+ Education</button>}
         {newEducationData && 
           <EducationTemplate 
             educationData={educationData}
@@ -160,21 +161,6 @@ export default function Education() {
           /> 
         }
       </div>
-      <div className="education-data-container">
-        <h2>Education</h2>
-        {educationData.map(education => (
-          <div key={education.educationId}>
-            <div className="education-period">
-              <p>{education.startDate} - {education.endDate}</p>
-              <p>{education.location}</p>
-            </div>
-            <div className="education-info">
-              <h3>{education.school}</h3>
-              <p>{education.degree}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   )
 }

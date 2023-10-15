@@ -1,17 +1,17 @@
 import React from "react"
 import { v4 as uuidv4 } from "uuid"
 import SkillsAndCertificatesTemplate from "./SkillsAndCertificatesTemplate";
+import { SkillsAndCertificatesDataContext } from "../../App";
 
 export default function SkillsAndCertificates() {
   
-  const [skillsAndCertificatesData, setSkillsAndCertificatesData] = React.useState([]);
+  const {skillsAndCertificatesData, setSkillsAndCertificatesData} = React.useContext(SkillsAndCertificatesDataContext);
   const [addSkillsAndCertificates, setAddSkillsAndCertificates] = React.useState(true);
   const [newSkillsAndCertificatesData, setNewSkillsAndCertificatesData] = React.useState(false);
   const [skillsAndCertificatesAdded, setSkillsAndCertificatesAdded] = React.useState(true);
   const [showSkillsAndCertificatesBtn, setShowSkillsAndCertificatesBtn] = React.useState(true);
   const [selectedSkillsAndCertificates, setSelectedSkillsAndCertificates] = React.useState(false);
   const [notModifiedSkillsAndCertificatesData, setNotModifiedSkillsAndCertificatesData] = React.useState([]);
-
 
   function handleChange (event) {
     const { name, value } = event.target;
@@ -130,9 +130,9 @@ export default function SkillsAndCertificates() {
   console.log(skillsAndCertificatesData)
 
   return (
-    <div>
+    <>
       <div className="skillsAndCertificates-input-container">
-        <button>skillsAndCertificates</button>
+        <h2>skillsAndCertificates</h2>
         {skillsAndCertificatesData.map(skillsAndCertificates => (
           <div key={skillsAndCertificates.skillCertificateId}>
             {showSkillsAndCertificatesBtn && <button onClick={() => showSkillsAndCertificatesEdit(skillsAndCertificates.skillCertificateId)} key={skillsAndCertificates.skillCertificateId}>{skillsAndCertificates.skillCertificate}</button>}
@@ -146,7 +146,7 @@ export default function SkillsAndCertificates() {
             />}
           </div>
         ))}
-        {addSkillsAndCertificates && <button onClick={handleAddSkillsAndCertificatesBtn}>+ skillsAndCertificates</button>}
+        {addSkillsAndCertificates && <button onClick={handleAddSkillsAndCertificatesBtn} className="add-btn">+ skillsAndCertificates</button>}
         {newSkillsAndCertificatesData && 
           <SkillsAndCertificatesTemplate 
             skillsAndCertificatesData={skillsAndCertificatesData}
@@ -158,18 +158,6 @@ export default function SkillsAndCertificates() {
           /> 
         }
       </div>
-      <div className="skillsAndCertificates-data-container">
-        <h2>Skills And Certificates</h2>
-        <ul>
-          {skillsAndCertificatesData.map(skillsAndCertificates => (
-            <li key={skillsAndCertificates.skillCertificateId}>
-              <h3>{skillsAndCertificates.skillCertificate}</h3>
-              <br />
-              <p>{skillsAndCertificates.description}</p> 
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    </>
   )
 }
