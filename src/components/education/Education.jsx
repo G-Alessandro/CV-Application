@@ -9,7 +9,8 @@ export default function Education() {
   const [newEducationData, setNewEducationData] = React.useState(false);
   const [educationAdded, setEducationAdded] = React.useState(true);
   const [showEducationBtn, setShowEducationBtn] = React.useState(true);
-  const [selectedEducation, setSelectedEducation] = React.useState(null);
+  const [selectedEducation, setSelectedEducation] = React.useState(false);
+  const [notModifiedEducationData, setNotModifiedEducationData] = React.useState([]);
 
   function handleChange (event) {
     const { name, value } = event.target;
@@ -47,6 +48,7 @@ export default function Education() {
   }
 
   function showEducationEdit(educationId) {
+    setNotModifiedEducationData(educationData)
     setSelectedEducation(educationId);
     setShowEducationBtn(false)
     setAddEducation(false)
@@ -70,9 +72,18 @@ export default function Education() {
   }  
   
   function handleEditSave() {
-    setSelectedEducation(null);
+    setSelectedEducation(false);
     setShowEducationBtn(true);
     setAddEducation(true);
+  }
+
+  function handleEditCancel() {
+    setEducationData(notModifiedEducationData)
+    setAddEducation(true);
+    setEducationAdded(true);
+    setShowEducationBtn(true);
+    setNewEducationData(false);
+    setSelectedEducation(false);
   }
 
   function handleDeleteEdit() {
@@ -86,7 +97,7 @@ export default function Education() {
     });
 
     setEducationData(updatedEducationData);
-    setSelectedEducation(null);
+    setSelectedEducation(false);
     setShowEducationBtn(true);
     setAddEducation(true);
   }
@@ -131,7 +142,7 @@ export default function Education() {
               <EducationTemplate 
                 educationData={education}
                 handleDelete={handleDeleteEdit}
-                handleCancel={handleEditSave}
+                handleCancel={handleEditCancel}
                 handleSave={handleEditSave}
                 handleChange={handleEdit}
             />}

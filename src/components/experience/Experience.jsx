@@ -9,7 +9,8 @@ export default function Experience() {
   const [newExperienceData, setNewExperienceData] = React.useState(false);
   const [experienceAdded, setExperienceAdded] = React.useState(true);
   const [showExperienceBtn, setShowExperienceBtn] = React.useState(true);
-  const [selectedExperience, setSelectedExperience] = React.useState(null);
+  const [selectedExperience, setSelectedExperience] = React.useState(false);
+  const [notModifiedExperienceData, setNotModifiedExperienceData] = React.useState([]);
 
   function handleChange (event) {
     const { name, value } = event.target;
@@ -48,6 +49,7 @@ export default function Experience() {
   }
 
   function showExperienceEdit(experienceId) {
+    setNotModifiedExperienceData(experienceData)
     setSelectedExperience(experienceId);
     setShowExperienceBtn(false)
     setAddExperience(false)
@@ -69,11 +71,20 @@ export default function Experience() {
   
     setExperienceData(updatedExperienceData);
   }  
-  
+
   function handleEditSave() {
-    setSelectedExperience(null);
+    setSelectedExperience(false);
     setShowExperienceBtn(true);
     setAddExperience(true);
+  }
+
+  function handleEditCancel() {
+    setAddExperience(true);
+    setExperienceAdded(true);
+    setNewExperienceData(false);
+    setShowExperienceBtn(true);
+    setSelectedExperience(false)
+    setExperienceData(notModifiedExperienceData);
   }
 
   function handleDeleteEdit() {
@@ -87,7 +98,7 @@ export default function Experience() {
     });
 
     setExperienceData(updatedExperienceData);
-    setSelectedExperience(null);
+    setSelectedExperience(false);
     setShowExperienceBtn(true);
     setAddExperience(true);
   }
@@ -132,7 +143,7 @@ export default function Experience() {
               <ExperienceTemplate 
                 experienceData={experience}
                 handleDelete={handleDeleteEdit}
-                handleCancel={handleEditSave}
+                handleCancel={handleEditCancel}
                 handleSave={handleEditSave}
                 handleChange={handleEdit}
             />}

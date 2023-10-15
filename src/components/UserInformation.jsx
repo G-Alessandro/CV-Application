@@ -1,5 +1,4 @@
 import React from "react"
-import avatar from "../images/buffalo.png"
 
 export default function UserInformation() {
 
@@ -65,15 +64,14 @@ export default function UserInformation() {
         />
       </div>
       <div className="preview-personal-details">
-        <img src={avatar} style={{width: "100px"}}/>
-          <h1>{personalData.firstName} {personalData.lastName}</h1>
-          <ul>
-            <li>{personalData.firstName}</li>
-            <li>{personalData.lastName}</li>
-            <li>{personalData.email}</li>
-            <li>{personalData.phoneNumber}</li>
-            <li>{personalData.address}</li>
-          </ul>
+        <h1>{personalData.firstName} {personalData.lastName}</h1>
+        <ul>
+          <li>{personalData.firstName}</li>
+          <li>{personalData.lastName}</li>
+          <li>{personalData.email}</li>
+          <li>{personalData.phoneNumber}</li>
+          <li>{personalData.address}</li>
+        </ul>
       </div>
     </>
   )

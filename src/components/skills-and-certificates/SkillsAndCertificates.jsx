@@ -9,7 +9,9 @@ export default function SkillsAndCertificates() {
   const [newSkillsAndCertificatesData, setNewSkillsAndCertificatesData] = React.useState(false);
   const [skillsAndCertificatesAdded, setSkillsAndCertificatesAdded] = React.useState(true);
   const [showSkillsAndCertificatesBtn, setShowSkillsAndCertificatesBtn] = React.useState(true);
-  const [selectedSkillsAndCertificates, setSelectedSkillsAndCertificates] = React.useState(null);
+  const [selectedSkillsAndCertificates, setSelectedSkillsAndCertificates] = React.useState(false);
+  const [notModifiedSkillsAndCertificatesData, setNotModifiedSkillsAndCertificatesData] = React.useState([]);
+
 
   function handleChange (event) {
     const { name, value } = event.target;
@@ -44,6 +46,7 @@ export default function SkillsAndCertificates() {
   }
 
   function showSkillsAndCertificatesEdit(skillCertificateId) {
+    setNotModifiedSkillsAndCertificatesData(skillsAndCertificatesData)
     setSelectedSkillsAndCertificates(skillCertificateId);
     setShowSkillsAndCertificatesBtn(false)
     setAddSkillsAndCertificates(false)
@@ -67,9 +70,18 @@ export default function SkillsAndCertificates() {
   }  
   
   function handleEditSave() {
-    setSelectedSkillsAndCertificates(null);
+    setSelectedSkillsAndCertificates(false);
     setShowSkillsAndCertificatesBtn(true);
     setAddSkillsAndCertificates(true);
+  }
+
+  function handleEditCancel() {
+    setSkillsAndCertificatesData(notModifiedSkillsAndCertificatesData);
+    setAddSkillsAndCertificates(true);
+    setSkillsAndCertificatesAdded(true);
+    setNewSkillsAndCertificatesData(false);
+    setShowSkillsAndCertificatesBtn(true);
+    setSelectedSkillsAndCertificates(false)
   }
 
   function handleDeleteEdit() {
@@ -83,7 +95,7 @@ export default function SkillsAndCertificates() {
     });
 
     setSkillsAndCertificatesData(updatedSkillsAndCertificatesData);
-    setSelectedSkillsAndCertificates(null);
+    setSelectedSkillsAndCertificates(false);
     setShowSkillsAndCertificatesBtn(true);
     setAddSkillsAndCertificates(true);
   }
@@ -128,7 +140,7 @@ export default function SkillsAndCertificates() {
               <SkillsAndCertificatesTemplate 
                 skillsAndCertificatesData={skillsAndCertificates}
                 handleDelete={handleDeleteEdit}
-                handleCancel={handleEditSave}
+                handleCancel={handleEditCancel}
                 handleSave={handleEditSave}
                 handleChange={handleEdit}
             />}
