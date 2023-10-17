@@ -1,3 +1,5 @@
+import DeleteSvg from "../../icons/delete.svg"
+
 export default function SkillsAndCertificatesTemplate(props) {
 
   function noIndex(key) {
@@ -13,6 +15,7 @@ export default function SkillsAndCertificatesTemplate(props) {
         value={noIndex("skillCertificate")}
         name="skillCertificate"
         onChange={props.handleChange}
+        placeholder="Enter skill / certificate"
       />
       <label htmlFor="description">Description</label>
       <textarea 
@@ -20,11 +23,13 @@ export default function SkillsAndCertificatesTemplate(props) {
         value={noIndex("description")}
         name="description"
         onChange={props.handleChange}
+        placeholder="Enter description"
+        rows={5}
       />
-      <div>
-        <button onClick={props.handleDelete} >Delete</button>
-        <button onClick={props.handleCancel} >Cancel</button>
-        <button onClick={props.handleSave} >Save</button>
+      <div className="btn-container">
+        <button className="delete-btn" onClick={props.handleDelete}><img className="delete-btn-svg" src={DeleteSvg}/>Delete</button>
+        <button className="cancel-btn" onClick={props.handleCancel}>Cancel</button>
+        <button className="save-btn" onClick={props.handleSave} >Save</button>
       </div>
     </div>
   )

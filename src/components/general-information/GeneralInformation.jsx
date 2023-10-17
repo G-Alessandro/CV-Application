@@ -1,5 +1,6 @@
 import React from "react"
 import { PersonalDataContext } from "../../App";
+import PersonalDataSvg from "../../icons/account-details.svg"
 
 export default function GeneralInformation() {
   
@@ -15,8 +16,8 @@ export default function GeneralInformation() {
 
   return (
     <>
-      <div className="personal-details-container">
-        <h3>Personal Details</h3>
+      <div className="general-input-container">
+        <h2 className="preview-personal-info" ><img src={PersonalDataSvg} className="preview-personal-svg"/>Personal Details</h2>
         <label htmlFor="first-name">First Name</label>
         <input 
           type="text" 
@@ -24,6 +25,7 @@ export default function GeneralInformation() {
           value={personalData.firstName}
           name="firstName"
           onChange={handleChange}
+          placeholder="Enter first name"
         />
         <label htmlFor="last-name">Last Name</label>
         <input 
@@ -32,6 +34,7 @@ export default function GeneralInformation() {
           value={personalData.lastName}
           name="lastName"
           onChange={handleChange}
+          placeholder="Enter last name"
         />
         <label htmlFor="email">Email</label>
         <input 
@@ -40,6 +43,7 @@ export default function GeneralInformation() {
           value={personalData.email}
           name="email"
           onChange={handleChange}
+          placeholder="Enter email"
         />
         <label htmlFor="phone-number">Phone Number</label>
         <input
@@ -48,6 +52,7 @@ export default function GeneralInformation() {
           value={personalData.phoneNumber}
           name="phoneNumber"
           onChange={handleChange}
+          placeholder="Enter phone number"
         />
         <label htmlFor="address">Address</label>
         <input
@@ -56,6 +61,7 @@ export default function GeneralInformation() {
           value={personalData.address}
           name="address"
           onChange={handleChange}
+          placeholder="Enter city, country"
         />
       </div>
     </>

@@ -2,6 +2,7 @@ import React from "react"
 import { v4 as uuidv4 } from "uuid"
 import ExperienceTemplate from "./ExperienceTemplate";
 import { ExperienceDataContext } from "../../App";
+import ToolboxSvg from "../../icons/toolbox.svg"
 
 export default function Experience() {
   
@@ -136,10 +137,10 @@ export default function Experience() {
   return (
     <>
       <div className="experience-input-container">
-        <h2>Experience</h2>
+        <h2 className="preview-personal-info" ><img src={ToolboxSvg} className="preview-personal-svg"/>Experience</h2>
         {experienceData.map(experience => (
           <div key={experience.experienceId}>
-            {showExperienceBtn && <button onClick={() => showExperienceEdit(experience.experienceId)} key={experience.experienceId}>{experience.companyName}</button>}
+            {showExperienceBtn && <button className="data-added-btn" onClick={() => showExperienceEdit(experience.experienceId)} key={experience.experienceId}>{experience.companyName}</button>}
             {selectedExperience === experience.experienceId &&
               <ExperienceTemplate 
                 experienceData={experience}

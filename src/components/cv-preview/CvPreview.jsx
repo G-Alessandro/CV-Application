@@ -3,6 +3,9 @@ import { PersonalDataContext } from "../../App"
 import { EducationDataContext } from "../../App";
 import { ExperienceDataContext } from "../../App";
 import { SkillsAndCertificatesDataContext } from "../../App";
+import EmailSvg from "../../icons/email.svg";
+import SmartphoneSvg from "../../icons/smartphone.svg";
+import LocationSvg from "../../icons/map-marker.svg";
 
 export default function CvPreview() {
   const { personalData } = React.useContext(PersonalDataContext);
@@ -11,23 +14,21 @@ export default function CvPreview() {
   const { skillsAndCertificatesData } = React.useContext(SkillsAndCertificatesDataContext);
 
   return (
-    <>
+    <div className="preview">
       <div className="preview-personal-details">
         <h1>{personalData.firstName} {personalData.lastName}</h1>
-        <ul>
-          <li>{personalData.firstName}</li>
-          <li>{personalData.lastName}</li>
-          <li>{personalData.email}</li>
-          <li>{personalData.phoneNumber}</li>
-          <li>{personalData.address}</li>
-        </ul>
+        <div className="preview-personal-info-container">
+          <div className="preview-personal-info">{personalData.email && <img className="preview-personal-svg" src={EmailSvg}/>}{personalData.email}</div>
+          <div className="preview-personal-info">{personalData.phoneNumber && <img className="preview-personal-svg" src={SmartphoneSvg}/>}{personalData.phoneNumber}</div>
+          <div className="preview-personal-info">{personalData.address && <img className="preview-personal-svg" src={LocationSvg}/>}{personalData.address}</div>
+        </div>
       </div>
       <div className="preview-education">
-        <h2>Education</h2>
+        {educationData.length > 0 && <div className="preview-title">Education</div>}
         {educationData.map(education => (
-          <div key={education.educationId}>
+          <div className="education-container" key={education.educationId}>
             <div className="education-period">
-              <p>{education.startDate} - {education.endDate}</p>
+              <p>{education.startDate} {education.endDate ? ` - ${education.endDate}` : ''}</p>
               <p>{education.location}</p>
             </div>
             <div className="education-info">
@@ -38,11 +39,11 @@ export default function CvPreview() {
         ))}
       </div>
       <div className="preview-experience">
-        <h2>Professional Experience</h2>
+        {experienceData.length > 0 && <div className="preview-title">Professional Experience</div>}
         {experienceData.map(experience => (
-          <div key={experience.experienceId}>
+          <div className="experience-container" key={experience.experienceId}>
             <div className="experience-period">
-              <p>{experience.startDate} - {experience.endDate}</p>
+              <p>{experience.startDate} {experience.endDate ? `- ${experience.endDate}` : ''}</p>
               <p>{experience.location}</p>
             </div>
             <div className="experience-info">
@@ -53,18 +54,15 @@ export default function CvPreview() {
           </div>
         ))}
       </div>
-      <div className="preview-skills-and-certificates">
-        <h2>Skills And Certificates</h2>
-        <ul>
+      <div className="preview-skills-and-certificates-container">
+        {skillsAndCertificatesData.length > 0 && <div className="preview-title">Skills And Certificates</div>}
           {skillsAndCertificatesData.map(skillsAndCertificates => (
-            <li key={skillsAndCertificates.skillCertificateId}>
+            <div className="preview-skills-and-certificates" key={skillsAndCertificates.skillCertificateId}>
               <h3>{skillsAndCertificates.skillCertificate}</h3>
-              <br />
               <p>{skillsAndCertificates.description}</p> 
-            </li>
+            </div>
           ))}
-        </ul>
       </div>
-    </>
+    </div>
   )
 }

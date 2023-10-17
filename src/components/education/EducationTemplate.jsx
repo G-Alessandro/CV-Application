@@ -1,3 +1,4 @@
+import DeleteSvg from "../../icons/delete.svg"
 
 export default function EducationTemplate(props) {
 
@@ -14,6 +15,7 @@ export default function EducationTemplate(props) {
         value={noIndex("school")}
         name="school"
         onChange={props.handleChange}
+        placeholder="Enter school / university"
       />
       <label htmlFor="degree">Degree</label>
       <input
@@ -22,6 +24,7 @@ export default function EducationTemplate(props) {
         value={noIndex("degree")}
         name="degree"
         onChange={props.handleChange}
+        placeholder="Enter degree / field of study"
       />
       <label htmlFor="start-date">Start Date</label>
       <input 
@@ -30,6 +33,7 @@ export default function EducationTemplate(props) {
         value={noIndex("startDate")}
         name="startDate"
         onChange={props.handleChange}
+        placeholder="Enter start date"
       />
       <label htmlFor="end-date">End Date</label>
       <input 
@@ -38,6 +42,7 @@ export default function EducationTemplate(props) {
         value={noIndex("endDate")}
         name="endDate"
         onChange={props.handleChange}
+        placeholder="Enter end date"
       />
       <label htmlFor="location">Location</label>
       <input
@@ -46,11 +51,12 @@ export default function EducationTemplate(props) {
         value={noIndex("location")}
         name="location"
         onChange={props.handleChange}
+        placeholder="Enter location"
       />
-      <div>
-        <button onClick={props.handleDelete} >Delete</button>
-        <button onClick={props.handleCancel} >Cancel</button>
-        <button onClick={props.handleSave} >Save</button>
+      <div className="btn-container">
+        <button className="delete-btn" onClick={props.handleDelete}><img className="delete-btn-svg" src={DeleteSvg}/>Delete</button>
+        <button className="cancel-btn" onClick={props.handleCancel}>Cancel</button>
+        <button className="save-btn" onClick={props.handleSave}>Save</button>
       </div>
     </div>
   )

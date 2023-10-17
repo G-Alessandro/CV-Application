@@ -2,6 +2,7 @@ import React from "react"
 import { v4 as uuidv4 } from "uuid"
 import EducationTemplate from "./EducationTemplate";
 import { EducationDataContext } from "../../App";
+import EducationSvg from "../../icons/education.svg"
 
 export default function Education() {
   
@@ -135,10 +136,10 @@ export default function Education() {
   return (
     <>
       <div className="education-input-container">
-        <h2>Education</h2>
+        <h2 className="preview-personal-info" ><img src={EducationSvg} className="preview-personal-svg"/>Education</h2>
         {educationData.map(education => (
           <div key={education.educationId}>
-            {showEducationBtn && <button onClick={() => showEducationEdit(education.educationId)} key={education.educationId}>{education.school}</button>}
+            {showEducationBtn && <button className="data-added-btn" onClick={() => showEducationEdit(education.educationId)} key={education.educationId}>{education.school}</button>}
             {selectedEducation === education.educationId &&
               <EducationTemplate 
                 educationData={education}

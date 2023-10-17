@@ -4,76 +4,260 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.main-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+body {
+  background-color: #f3f4f6;
 }
 
-.personal-details-container,
+.main-container {
+  display: flex; 
+}
+
+.input-container,
+.preview,
+.personal-details,
+.education,
+.experience,
+.skill-certificate,
+.preview-skills-and-certificates-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.preview {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  background-color: white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+}
+
+.preview-personal-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  width: 100%;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.preview-personal-details>h1 {
+  font-weight: 900;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+.preview-personal-info-container {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 20px;
+  width: 100%;
+  padding: 20px 0px;
+}
+
+.preview-personal-svg {
+  width: 30px;
+  margin-right: 5px;
+}
+
+.preview-personal-info {
+  display: flex;
+  align-items: center;
+}
+
+.resume-example-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ffffff;
+  margin: 10px 20px 10px 15px;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.resume-example-btn {
+
+}
+
+.general-input-container,
 .education-input-container,
 .experience-input-container,
 .skillsAndCertificates-input-container {
   display: flex;
   flex-direction: column;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  margin: 20px 20px 30px 15px;
+  background-color: #ffffff;
+  margin: 10px 20px 10px 15px;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* .preview-personal-details,
-.preview-education,
-.preview-experience,
-.preview-skills-and-certificates {
-  grid-column-start: 2;
-  grid-column-end: 3;
-} */
-
-.add-btn {
-  width: fit-content;
-  padding: 10px;
+.general-input-container>h2,
+.education-input-container>h2,
+.experience-input-container>h2,
+.skillsAndCertificates-input-container>h2 {
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
 }
 
-/* .personal-details-container {
-
-} */
-
-
-/* preview-personal-details
-
-.education-input-container {
-
-}
-
-preview-education
-
-education-period
-
-education-info
-
-experience-input-container
-
-preview-experience
-
-experience-period
-
-experience-info
-
-skillsAndCertificates-input-container
-
-preview-skillsAndCertificates */
-
-
-.personal-details,
-.education,
-.experience,
-.skill-certificate {
+.preview-title {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 900px;
+  height: 40px;
+  margin: 10px 0px;
+  background-color: #f3f4f6;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.education-container,
+.experience-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.preview-skills-and-certificates {
+  width: 900px;
+  align-self: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.education-period,
+.experience-period {
+  grid-column: 1/2;
+  width: 300px;
+  word-wrap: break-word;
+}
+
+.education-info,
+.experience-info {
+  grid-column: 2/3;
+  width: 600px;
+  word-wrap: break-word;
+}
+
+.education-info>h3,
+.experience-info>h3,
+.preview-skills-and-certificates-container>h3 {
+  margin-bottom: 5px;
+}
+
+.preview-skills-and-certificates>h3 {
+  margin-bottom: 5px;
+}
+
+.experience-info>p {
+  margin-bottom: 10px;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 700;
 }
 
 input {
   width: 400px;
-  height: 30px;
+  height: 40px;
+  font-size: 18px;
+  font-weight: 500;
   margin: 4px 0px 12px 0px;
   border-radius: 10px;
+  text-indent: 10px;
+  background-color: #f3f4f6;
+  border: none;
+}
+
+textarea {
+  width: 400px;
+  resize: vertical;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+::placeholder {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border-style: none;
+  background-color: #f3f4f6;
+}
+
+button:active {
+  border-style: none;
+}
+
+.data-added-btn {
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 900;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.add-btn {
+  align-self: center;
+  width: fit-content;
+  font-size: 15px;
+  font-weight: 900;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.resume-example-btn,
+.delete-btn,
+.cancel-btn,
+.save-btn {
+  font-size: 15px;
+  font-weight: 900;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.clear-resume-btn,
+.load-resume-btn,
+.delete-btn {
+  display: flex;
+  align-items: end;
+  color: white;
+  background-color: rgb(251, 87, 87);
+}
+
+.delete-btn-svg {
+  width: 20px;
+  margin-right: 5px;
+}
+
+.cancel-btn {
+  background-color: white;
+  border: 2px solid black;
+}
+
+.load-resume-btn,
+.save-btn {
+  color: white;
+  background-color: rgb(59, 128, 255);
 }

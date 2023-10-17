@@ -2,6 +2,7 @@ import React from "react"
 import { v4 as uuidv4 } from "uuid"
 import SkillsAndCertificatesTemplate from "./SkillsAndCertificatesTemplate";
 import { SkillsAndCertificatesDataContext } from "../../App";
+import SkillsCertificatesSvg from "../../icons/certificate.svg"
 
 export default function SkillsAndCertificates() {
   
@@ -132,10 +133,10 @@ export default function SkillsAndCertificates() {
   return (
     <>
       <div className="skillsAndCertificates-input-container">
-        <h2>skillsAndCertificates</h2>
+        <h2 className="preview-personal-info" ><img src={SkillsCertificatesSvg} className="preview-personal-svg"/>Skills And Certificates</h2>
         {skillsAndCertificatesData.map(skillsAndCertificates => (
           <div key={skillsAndCertificates.skillCertificateId}>
-            {showSkillsAndCertificatesBtn && <button onClick={() => showSkillsAndCertificatesEdit(skillsAndCertificates.skillCertificateId)} key={skillsAndCertificates.skillCertificateId}>{skillsAndCertificates.skillCertificate}</button>}
+            {showSkillsAndCertificatesBtn && <button className="data-added-btn" onClick={() => showSkillsAndCertificatesEdit(skillsAndCertificates.skillCertificateId)} key={skillsAndCertificates.skillCertificateId}>{skillsAndCertificates.skillCertificate}</button>}
             {selectedSkillsAndCertificates === skillsAndCertificates.skillCertificateId &&
               <SkillsAndCertificatesTemplate 
                 skillsAndCertificatesData={skillsAndCertificates}
@@ -146,7 +147,7 @@ export default function SkillsAndCertificates() {
             />}
           </div>
         ))}
-        {addSkillsAndCertificates && <button onClick={handleAddSkillsAndCertificatesBtn} className="add-btn">+ skillsAndCertificates</button>}
+        {addSkillsAndCertificates && <button onClick={handleAddSkillsAndCertificatesBtn} className="add-btn">+ Skills And Certificates</button>}
         {newSkillsAndCertificatesData && 
           <SkillsAndCertificatesTemplate 
             skillsAndCertificatesData={skillsAndCertificatesData}

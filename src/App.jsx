@@ -1,4 +1,5 @@
 import React from "react"
+import ResumeExample from "./components/resume-example/ResumeExample"
 import GeneralInformation from "./components/general-information/GeneralInformation"
 import Education from "./components/education/Education";
 import Experience from "./components/experience/Experience"
@@ -19,11 +20,9 @@ export default function App() {
     phoneNumber: "",
     address: ""
   });
-
+  
   const [educationData, setEducationData] = React.useState([]);
-
   const [experienceData, setExperienceData] = React.useState([]);
-
   const [skillsAndCertificatesData, setSkillsAndCertificatesData] = React.useState([]);
 
 
@@ -33,10 +32,13 @@ export default function App() {
         <EducationDataContext.Provider value={{ educationData, setEducationData }}>
           <ExperienceDataContext.Provider value={{ experienceData, setExperienceData }}>
             <SkillsAndCertificatesDataContext.Provider value={{ skillsAndCertificatesData, setSkillsAndCertificatesData }}>
-              <GeneralInformation />
-              <Education />
-              <Experience />
-              <SkillsAndCertificates />
+              <div className="input-container">
+                <ResumeExample />
+                <GeneralInformation />
+                <Education />
+                <Experience />
+                <SkillsAndCertificates />
+              </div>
               <CvPreview />
             </SkillsAndCertificatesDataContext.Provider>
           </ExperienceDataContext.Provider>
