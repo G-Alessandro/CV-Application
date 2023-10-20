@@ -6,7 +6,7 @@
 <h2>Things I've learned:</h2>
 
 <ul>
-  <li>How jsx works</li>
+  <li>How to use jsx</li>
   <li>How to use useStates</li>
   <li>How to use createContexts</li>
 </ul>
