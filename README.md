@@ -7,6 +7,7 @@
 
 <ul>
   <li>How to use jsx</li>
+  <li>How to use props</li>
   <li>How to use useStates</li>
   <li>How to use createContexts</li>
 </ul>
